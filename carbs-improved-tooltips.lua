@@ -1,73 +1,62 @@
 -- Rewrites wordy "Equip:" stat lines on item tooltips into short "+X Stat" lines.
 -- "Spell Power" always means spell damage; healing is shown separately as "Heal Power".
 
--- One-number stat lines: a cheap plain-text check, the full pattern, and the text after "+X"
-local simpleRules = {
-    { find = "Attack Power", pattern = "^Equip: %+(%d+) Attack Power%.?$", label = " Attack Power" },
-    { find = "Increased Defense", pattern = "^Equip: Increased Defense %+(%d+)%.?$", label = " Defense" },
-    { find = "per 5 sec", pattern = "^Equip: Restores (%d+) [Mm]ana per 5 sec%.?$", label = " Mana per 5 sec." },
+-- Each rule: an anchored pattern and a function that builds the new text from its captures.
+-- Rules are tried in order; the first match wins. Anchoring on "^Equip: " makes most tooltip
+-- lines fail each pattern within the first few characters.
+local rules = {
+    -- Damage and healing
+    {
+        pattern = "^Equip: Increases damage and healing done by magical spells and effects by up to (%d+)%.$",
+        format = function(amount) return "+" .. amount .. " Spell Power\n+" .. amount .. " Heal Power" end,
+    },
+    -- Damage only
+    {
+        pattern = "^Equip: Increases damage done by magical spells and effects by up to (%d+)%.$",
+        format = function(amount) return "+" .. amount .. " Spell Power" end,
+    },
+    -- Damage against a creature type
+    {
+        pattern = "^Equip: Increases damage done to (%a+) by magical spells and effects by up to (%d+)%.$",
+        format = function(specific, amount) return "+" .. amount .. " Spell Power against " .. specific end,
+    },
+    -- Damage for one school
+    {
+        pattern = "^Equip: Increases damage done by (%a+) spells and effects by up to (%d+)%.$",
+        format = function(specific, amount) return "+" .. amount .. " " .. specific .. " Spell Power" end,
+    },
+    -- Healing with a smaller damage bonus
+    {
+        pattern = "^Equip: Increases healing done by up to (%d+) and damage done by up to (%d+) for all magical spells and effects%.$",
+        format = function(healing, damage) return "+" .. damage .. " Spell Power\n+" .. healing .. " Heal Power" end,
+    },
+    -- Healing only
+    {
+        pattern = "^Equip: Increases healing done by spells and effects by up to (%d+)%.$",
+        format = function(amount) return "+" .. amount .. " Heal Power" end,
+    },
+    {
+        pattern = "^Equip: %+(%d+) Attack Power%.?$",
+        format = function(amount) return "+" .. amount .. " Attack Power" end,
+    },
+    {
+        pattern = "^Equip: Increased Defense %+(%d+)%.?$",
+        format = function(amount) return "+" .. amount .. " Defense" end,
+    },
+    {
+        pattern = "^Equip: Restores (%d+) [Mm]ana per 5 sec%.?$",
+        format = function(amount) return "+" .. amount .. " Mana per 5 sec." end,
+    },
 }
 
 local function getReplacementText(text)
-    -- Cheap plain-text checks first so most tooltip lines skip the pattern matches below
-    if not string.find(text, "spells and effects", 1, true) then
-        for _, rule in ipairs(simpleRules) do
-            if string.find(text, rule.find, 1, true) then
-                local amount = text:match(rule.pattern)
+    for _, rule in ipairs(rules) do
+        -- Patterns have at most two captures; one-capture rules just ignore the second
+        local capture1, capture2 = text:match(rule.pattern)
 
-                if amount then
-                    return "+" .. amount .. rule.label
-                end
-
-                return text
-            end
+        if capture1 then
+            return rule.format(capture1, capture2)
         end
-
-        return text
-    end
-
-    local amount, amount2, specific
-
-    -- Damage and healing
-    amount = text:match("^Equip: Increases damage and healing done by magical spells and effects by up to (%d+)%.$")
-
-    if amount then
-        return "+" .. amount .. " Spell Power\n+" .. amount .. " Heal Power"
-    end
-
-    -- Damage only
-    amount = text:match("^Equip: Increases damage done by magical spells and effects by up to (%d+)%.$")
-
-    if amount then
-        return "+" .. amount .. " Spell Power"
-    end
-
-    -- Damage against a creature type
-    specific, amount = text:match("^Equip: Increases damage done to (%a+) by magical spells and effects by up to (%d+)%.$")
-
-    if specific and amount then
-        return "+" .. amount .. " Spell Power against " .. specific
-    end
-
-    -- Damage for one school
-    specific, amount = text:match("^Equip: Increases damage done by (%a+) spells and effects by up to (%d+)%.$")
-
-    if specific and amount then
-        return "+" .. amount .. " " .. specific .. " Spell Power"
-    end
-
-    -- Healing with a smaller damage bonus
-    amount, amount2 = text:match("^Equip: Increases healing done by up to (%d+) and damage done by up to (%d+) for all magical spells and effects%.$")
-
-    if amount and amount2 then
-        return "+" .. amount2 .. " Spell Power\n+" .. amount .. " Heal Power"
-    end
-
-    -- Healing only
-    amount = text:match("^Equip: Increases healing done by spells and effects by up to (%d+)%.$")
-
-    if amount then
-        return "+" .. amount .. " Heal Power"
     end
 
     return text

@@ -6,16 +6,6 @@ Classic-era items describe their bonuses in long sentences such as "Equip: Incre
 and healing done by magical spells and effects by up to 23." Carbs Improved Tooltips replaces
 those lines with short stat lines, so you can compare gear at a glance.
 
-## Installation
-
-Install it from CurseForge or Wago Addons with your addon manager, or download the zip from
-the GitHub release and extract it into `Interface/AddOns/`.
-
-## Usage
-
-There is nothing to set up. Once the addon is enabled, hover over any item and its tooltip
-uses the short lines below.
-
 ## What changes
 
 "Spell Power" always means spell damage. Healing bonuses are shown separately as
