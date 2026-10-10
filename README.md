@@ -4,7 +4,8 @@ A World of Warcraft: Forever addon that makes item tooltips easier to read.
 
 Classic-era items describe their bonuses in long sentences such as "Equip: Increases damage
 and healing done by magical spells and effects by up to 23." Carbs Improved Tooltips replaces
-those lines with short stat lines, so you can compare gear at a glance.
+those lines with short stat lines, so you can compare gear at a glance. This works anywhere
+item stats appear, including the item a recipe makes.
 
 ## What changes
 

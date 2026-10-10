@@ -1,5 +1,9 @@
 # Carbs Improved Tooltips
 
+## Unreleased
+
+- Also shortens the stats of the item a recipe makes, in recipe and profession tooltips.
+
 ## v1.0.0
 
 First public release for World of Warcraft: Forever.

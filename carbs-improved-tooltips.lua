@@ -66,7 +66,7 @@ local rules = {
     },
 }
 
-local function getReplacementText(text)
+local function getLineReplacement(text)
     for _, rule in ipairs(rules) do
         -- Patterns have at most two captures; one-capture rules just ignore the second
         local capture1, capture2 = text:match(rule.pattern)
@@ -79,12 +79,27 @@ local function getReplacementText(text)
     return text
 end
 
-TooltipDataProcessor.AddTooltipPreCall(Enum.TooltipDataType.Item, function (self, data)
+local function getReplacementText(text)
+    -- One tooltip line can hold a whole block of lines, such as the item a recipe makes.
+    -- The patterns are anchored to the whole string, so rewrite each line on its own.
+    if string.find(text, "\n", 1, true) then
+        return (text:gsub("[^\n]+", getLineReplacement))
+    end
+
+    return getLineReplacement(text)
+end
+
+-- Hook every tooltip type, not just items, so item stats shown inside other tooltips
+-- (recipes, profession windows) are rewritten too
+TooltipDataProcessor.AddTooltipPreCall(TooltipDataProcessor.AllTypes, function (self, data)
     if not data or not data.lines then return end
 
     for _, line in ipairs(data.lines) do
-        if line.leftText and type(line.leftText) == "string" then
-            line.leftText = getReplacementText(line.leftText)
+        local text = line.leftText
+
+        -- Some tooltips (units in combat) carry secret text that addons can't read
+        if type(text) == "string" and not (issecretvalue and issecretvalue(text)) then
+            line.leftText = getReplacementText(text)
         end
     end
 end)
