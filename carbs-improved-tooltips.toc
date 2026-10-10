@@ -4,5 +4,7 @@
 ## Author: Carb
 ## Version: @project-version@
 ## X-License: MIT
+## X-Curse-Project-ID: 1736146
+## X-Wago-ID: b6Xy5JKp
 
 carbs-improved-tooltips.lua
