@@ -47,6 +47,10 @@ local rules = {
         pattern = "^Equip: Restores (%d+) [Mm]ana per 5 sec%.?$",
         format = function(amount) return "+" .. amount .. " Mana per 5 sec." end,
     },
+    {
+        pattern = "^Equip: Restores (%d+) [Hh]ealth per 5 sec%.?$",
+        format = function(amount) return "+" .. amount .. " Health per 5 sec." end,
+    },
 }
 
 local function getReplacementText(text)

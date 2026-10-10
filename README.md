@@ -22,6 +22,7 @@ those lines with short stat lines, so you can compare gear at a glance.
 | Equip: +28 Attack Power. | +28 Attack Power |
 | Equip: Increased Defense +7. | +7 Defense |
 | Equip: Restores 2 mana per 5 sec. | +2 Mana per 5 sec. |
+| Equip: Restores 5 health per 5 sec. | +5 Health per 5 sec. |
 
 Every other tooltip line is left as it is.
 
