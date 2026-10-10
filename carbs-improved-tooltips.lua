@@ -39,6 +39,19 @@ local rules = {
         pattern = "^Equip: %+(%d+) Attack Power%.?$",
         format = function(amount) return "+" .. amount .. " Attack Power" end,
     },
+    -- Attack power against a creature type
+    {
+        pattern = "^Equip: %+(%d+) Attack Power against (%a+)%.?$",
+        format = function(amount, specific) return "+" .. amount .. " Attack Power against " .. specific end,
+    },
+    {
+        pattern = "^Equip: %+(%d+) [Rr]anged Attack Power%.?$",
+        format = function(amount) return "+" .. amount .. " Ranged Attack Power" end,
+    },
+    {
+        pattern = "^Equip: Improves your chance to hit by ([%d%.]+)%%%.?$",
+        format = function(amount) return "+" .. amount .. "% Hit" end,
+    },
     {
         pattern = "^Equip: Increased Defense %+(%d+)%.?$",
         format = function(amount) return "+" .. amount .. " Defense" end,
@@ -46,6 +59,10 @@ local rules = {
     {
         pattern = "^Equip: Restores (%d+) [Mm]ana per 5 sec%.?$",
         format = function(amount) return "+" .. amount .. " Mana per 5 sec." end,
+    },
+    {
+        pattern = "^Equip: Restores (%d+) [Hh]ealth per 5 sec%.?$",
+        format = function(amount) return "+" .. amount .. " Health per 5 sec." end,
     },
 }
 
