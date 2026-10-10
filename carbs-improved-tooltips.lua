@@ -1,37 +1,32 @@
 -- Rewrites wordy "Equip:" stat lines on item tooltips into short "+X Stat" lines.
 -- "Spell Power" always means spell damage; healing is shown separately as "Heal Power".
 
+-- One-number stat lines: a cheap plain-text check, the full pattern, and the text after "+X"
+local simpleRules = {
+    { find = "Attack Power", pattern = "^Equip: %+(%d+) Attack Power%.?$", label = " Attack Power" },
+    { find = "Increased Defense", pattern = "^Equip: Increased Defense %+(%d+)%.?$", label = " Defense" },
+    { find = "per 5 sec", pattern = "^Equip: Restores (%d+) [Mm]ana per 5 sec%.?$", label = " Mana per 5 sec." },
+}
+
 local function getReplacementText(text)
     -- Cheap plain-text checks first so most tooltip lines skip the pattern matches below
-    local isSpell = string.find(text, "spells and effects", 1, true)
-    local isAttack = not isSpell and string.find(text, "Attack Power", 1, true)
-    local isDefense = not isSpell and not isAttack and string.find(text, "Increased Defense", 1, true)
+    if not string.find(text, "spells and effects", 1, true) then
+        for _, rule in ipairs(simpleRules) do
+            if string.find(text, rule.find, 1, true) then
+                local amount = text:match(rule.pattern)
 
-    if not isSpell and not isAttack and not isDefense then
+                if amount then
+                    return "+" .. amount .. rule.label
+                end
+
+                return text
+            end
+        end
+
         return text
     end
 
     local amount, amount2, specific
-
-    if isAttack then
-        amount = text:match("^Equip: %+(%d+) Attack Power%.?$")
-
-        if amount then
-            return "+" .. amount .. " Attack Power"
-        end
-
-        return text
-    end
-
-    if isDefense then
-        amount = text:match("^Equip: Increased Defense %+(%d+)%.?$")
-
-        if amount then
-            return "+" .. amount .. " Defense"
-        end
-
-        return text
-    end
 
     -- Damage and healing
     amount = text:match("^Equip: Increases damage and healing done by magical spells and effects by up to (%d+)%.$")
