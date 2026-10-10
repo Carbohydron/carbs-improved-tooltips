@@ -14,9 +14,12 @@ mklink /J "E:\Program Files (x86)\World of Warcraft\_classic_beta_\Interface\Add
 `carbs-improved-tooltips.lua` registers a `TooltipDataProcessor.AddTooltipPreCall` for item tooltips and runs
 every left-hand line through `getReplacementText` before the tooltip is drawn.
 
-- A plain `string.find` for "spells and effects", or for each `simpleRules` entry's `find` text, filters out most lines
-  before any pattern matching runs.
-- Each known sentence has an anchored pattern, so lines that only look similar are left alone.
+- Every rewrite is one entry in the `rules` table: a `find` string, an anchored `pattern`, and a
+  `format` function that receives the pattern's captures and returns the new text.
+- Rules are tried in order and the first match wins. A plain `string.find` on `find` runs
+  before the pattern, so most lines never reach a pattern match.
+- Patterns are anchored, so lines that only look similar are left alone.
 - A line that becomes two stats (damage and healing) returns both joined with `\n`.
+- To add a rewrite, add a rule and a row to the README table.
 
 The client is interface 16001: a Retail-style API with classic-era item text.
