@@ -39,6 +39,16 @@ local rules = {
         pattern = "^Equip: %+(%d+) Attack Power%.?$",
         format = function(amount) return "+" .. amount .. " Attack Power" end,
     },
+    -- Attack power against a creature type
+    {
+        pattern = "^Equip: %+(%d+) Attack Power against (%a+)%.?$",
+        format = function(amount, specific) return "+" .. amount .. " Attack Power against " .. specific end,
+    },
+    -- Classic wording of the same bonus
+    {
+        pattern = "^Equip: %+(%d+) Attack Power when fighting (%a+)%.?$",
+        format = function(amount, specific) return "+" .. amount .. " Attack Power against " .. specific end,
+    },
     {
         pattern = "^Equip: Increased Defense %+(%d+)%.?$",
         format = function(amount) return "+" .. amount .. " Defense" end,
