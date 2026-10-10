@@ -5,8 +5,9 @@ local function getReplacementText(text)
     -- Cheap plain-text checks first so most tooltip lines skip the pattern matches below
     local isSpell = string.find(text, "spells and effects", 1, true)
     local isAttack = not isSpell and string.find(text, "Attack Power", 1, true)
+    local isDefense = not isSpell and not isAttack and string.find(text, "Increased Defense", 1, true)
 
-    if not isSpell and not isAttack then
+    if not isSpell and not isAttack and not isDefense then
         return text
     end
 
@@ -17,6 +18,16 @@ local function getReplacementText(text)
 
         if amount then
             return "+" .. amount .. " Attack Power"
+        end
+
+        return text
+    end
+
+    if isDefense then
+        amount = text:match("^Equip: Increased Defense %+(%d+)%.?$")
+
+        if amount then
+            return "+" .. amount .. " Defense"
         end
 
         return text

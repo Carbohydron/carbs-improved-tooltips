@@ -30,6 +30,7 @@ uses the short lines below.
 | Equip: Increases healing done by up to 44 and damage done by up to 15 for all magical spells and effects. | +15 Spell Power<br>+44 Heal Power |
 | Equip: Increases healing done by spells and effects by up to 22. | +22 Heal Power |
 | Equip: +28 Attack Power. | +28 Attack Power |
+| Equip: Increased Defense +7. | +7 Defense |
 
 Every other tooltip line is left as it is.
 

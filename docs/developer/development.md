@@ -11,10 +11,10 @@ mklink /J "E:\Program Files (x86)\World of Warcraft\_classic_beta_\Interface\Add
 
 ## How the tooltip rewrite works
 
-`core.lua` registers a `TooltipDataProcessor.AddTooltipPreCall` for item tooltips and runs
+`carbs-improved-tooltips.lua` registers a `TooltipDataProcessor.AddTooltipPreCall` for item tooltips and runs
 every left-hand line through `getReplacementText` before the tooltip is drawn.
 
-- A plain `string.find` for "spells and effects" or "Attack Power" filters out most lines
+- A plain `string.find` for "spells and effects", "Attack Power" or "Increased Defense" filters out most lines
   before any pattern matching runs.
 - Each known sentence has an anchored pattern, so lines that only look similar are left alone.
 - A line that becomes two stats (damage and healing) returns both joined with `\n`.
