@@ -3,6 +3,7 @@
 ## Notes: Shortens spell power, healing, attack power, hit, defense and regen lines on item tooltips.
 ## Author: Carb
 ## Version: @project-version@
+## IconTexture: Interface\Icons\ui_chat
 ## X-License: MIT
 ## X-Curse-Project-ID: 1736146
 ## X-Wago-ID: b6Xy5JKp
