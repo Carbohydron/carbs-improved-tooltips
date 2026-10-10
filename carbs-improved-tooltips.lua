@@ -44,10 +44,13 @@ local rules = {
         pattern = "^Equip: %+(%d+) Attack Power against (%a+)%.?$",
         format = function(amount, specific) return "+" .. amount .. " Attack Power against " .. specific end,
     },
-    -- Classic wording of the same bonus
     {
-        pattern = "^Equip: %+(%d+) Attack Power when fighting (%a+)%.?$",
-        format = function(amount, specific) return "+" .. amount .. " Attack Power against " .. specific end,
+        pattern = "^Equip: %+(%d+) [Rr]anged Attack Power%.?$",
+        format = function(amount) return "+" .. amount .. " Ranged Attack Power" end,
+    },
+    {
+        pattern = "^Equip: Improves your chance to hit by ([%d%.]+)%%%.?$",
+        format = function(amount) return "+" .. amount .. "% Hit" end,
     },
     {
         pattern = "^Equip: Increased Defense %+(%d+)%.?$",

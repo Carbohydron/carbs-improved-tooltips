@@ -1,6 +1,6 @@
 ## Interface: 16001
 ## Title: Carbs Improved Tooltips
-## Notes: Shortens spell power, healing, attack power, defense, mana regen and health regen lines on item tooltips.
+## Notes: Shortens spell power, healing, attack power, hit, defense and regen lines on item tooltips.
 ## Author: Carb
 ## Version: @project-version@
 ## X-License: MIT

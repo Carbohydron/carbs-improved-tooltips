@@ -21,7 +21,8 @@ those lines with short stat lines, so you can compare gear at a glance.
 | Equip: Increases healing done by spells and effects by up to 22. | +22 Heal Power |
 | Equip: +28 Attack Power. | +28 Attack Power |
 | Equip: +6 Attack Power against Beasts. | +6 Attack Power against Beasts |
-| Equip: +45 Attack Power when fighting Undead. | +45 Attack Power against Undead |
+| Equip: +12 Ranged Attack Power. | +12 Ranged Attack Power |
+| Equip: Improves your chance to hit by 0.4%. | +0.4% Hit |
 | Equip: Increased Defense +7. | +7 Defense |
 | Equip: Restores 2 mana per 5 sec. | +2 Mana per 5 sec. |
 | Equip: Restores 5 health per 5 sec. | +5 Health per 5 sec. |
