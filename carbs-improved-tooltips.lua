@@ -49,19 +49,13 @@ local rules = {
     },
 }
 
--- Calls format with the pattern's captures, or returns nil when the pattern didn't match
-local function applyRule(format, ...)
-    if ... then
-        return format(...)
-    end
-end
-
 local function getReplacementText(text)
     for _, rule in ipairs(rules) do
-        local replacement = applyRule(rule.format, text:match(rule.pattern))
+        -- Patterns have at most two captures; one-capture rules just ignore the second
+        local capture1, capture2 = text:match(rule.pattern)
 
-        if replacement then
-            return replacement
+        if capture1 then
+            return rule.format(capture1, capture2)
         end
     end
 

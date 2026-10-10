@@ -18,6 +18,8 @@ every left-hand line through `getReplacementText` before the tooltip is drawn.
   function that receives the pattern's captures and returns the new text.
 - Rules are tried in order and the first match wins. Each line runs one `text:match` per rule,
   and its captures go straight into `format`, so nothing is matched twice.
+- `getReplacementText` passes two captures to `format`, so a pattern may have at most two.
+  Raise that if a future rule needs more.
 - Every pattern starts with `^Equip: `, so a line that isn't an Equip line fails each pattern
   within its first few characters. Anchoring also leaves lines that only look similar alone.
 - A line that becomes two stats (damage and healing) returns both joined with `\n`.
