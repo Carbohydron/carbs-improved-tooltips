@@ -1,0 +1,8 @@
+## Interface: 16001
+## Title: Carbs Improved Tooltips
+## Notes: Shortens spell power, healing and attack power lines on item tooltips.
+## Author: Carb
+## Version: @project-version@
+## X-License: MIT
+
+core.lua
