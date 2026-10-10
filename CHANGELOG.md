@@ -1,6 +1,8 @@
 # Carbs Improved Tooltips
 
-## Unreleased
+## v1.0.0
+
+First public release for World of Warcraft: Forever.
 
 - Shortens spell damage and healing lines on item tooltips to "+X Spell Power" and
   "+X Heal Power".
