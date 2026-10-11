@@ -37,7 +37,7 @@ Two ways, both in a pre-call:
 
 - Whole line: `line.leftColor = CreateColor(r, g, b)` (values 0 to 1). Blizzard passes it
   straight to `AddColoredLine`.
-- Part of a line: color escapes in the text, e.g. `"|cff00ff00+23|r Spell Power"`. These work in
+- Part of a line: color escapes in the text, e.g. `"|cff00ff00+23|r Spell Damage"`. These work in
   any font string, so one line can mix colors.
 
 ## Font

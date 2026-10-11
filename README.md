@@ -9,17 +9,16 @@ item stats appear, including the item a recipe makes.
 
 ## What changes
 
-"Spell Power" always means spell damage. Healing bonuses are shown separately as
-"Heal Power".
+"Spell Damage" and "Spell Healing" match the wording of the default item comparison tooltip.
 
 | Original tooltip line | Shown as |
 | --- | --- |
-| Equip: Increases damage and healing done by magical spells and effects by up to 23. | +23 Spell Power<br>+23 Heal Power |
-| Equip: Increases damage done by magical spells and effects by up to 12. | +12 Spell Power |
-| Equip: Increases damage done by Fire spells and effects by up to 30. | +30 Fire Spell Power |
-| Equip: Increases damage done to Undead by magical spells and effects by up to 48. | +48 Spell Power against Undead |
-| Equip: Increases healing done by up to 44 and damage done by up to 15 for all magical spells and effects. | +15 Spell Power<br>+44 Heal Power |
-| Equip: Increases healing done by spells and effects by up to 22. | +22 Heal Power |
+| Equip: Increases damage and healing done by magical spells and effects by up to 23. | +23 Spell Damage<br>+23 Spell Healing |
+| Equip: Increases damage done by magical spells and effects by up to 12. | +12 Spell Damage |
+| Equip: Increases damage done by Fire spells and effects by up to 30. | +30 Fire Spell Damage |
+| Equip: Increases damage done to Undead by magical spells and effects by up to 48. | +48 Spell Damage against Undead |
+| Equip: Increases healing done by up to 44 and damage done by up to 15 for all magical spells and effects. | +15 Spell Damage<br>+44 Spell Healing |
+| Equip: Increases healing done by spells and effects by up to 22. | +22 Spell Healing |
 | Equip: +28 Attack Power. | +28 Attack Power |
 | Equip: +6 Attack Power against Beasts. | +6 Attack Power against Beasts |
 | Equip: +12 Ranged Attack Power. | +12 Ranged Attack Power |
