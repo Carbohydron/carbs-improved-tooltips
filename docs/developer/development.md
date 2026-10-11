@@ -11,8 +11,9 @@ mklink /J "E:\Program Files (x86)\World of Warcraft\_classic_beta_\Interface\Add
 
 ## How the tooltip rewrite works
 
-`carbs-improved-tooltips.lua` registers a `TooltipDataProcessor.AddTooltipPreCall` for item tooltips and runs
-every left-hand line through `getReplacementText` before the tooltip is drawn.
+`carbs-improved-tooltips.lua` registers a `TooltipDataProcessor.AddTooltipPreCall` for `Item` and
+`Spell` tooltips and runs each left-hand line through `getReplacementText` before the tooltip is
+drawn. `Spell` covers profession recipes, which list the item they make.
 
 - Every rewrite is one entry in the `rules` table: an anchored `pattern` and a `format`
   function that receives the pattern's captures and returns the new text.

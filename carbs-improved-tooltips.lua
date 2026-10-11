@@ -53,6 +53,10 @@ local rules = {
         format = function(amount) return "+" .. amount .. "% Hit" end,
     },
     {
+        pattern = "^Equip: Improves your chance to get a critical strike by ([%d%.]+)%%%.?$",
+        format = function(amount) return "+" .. amount .. "% Critical Strike chance" end,
+    },
+    {
         pattern = "^Equip: Increased Defense %+(%d+)%.?$",
         format = function(amount) return "+" .. amount .. " Defense" end,
     },
@@ -79,7 +83,7 @@ local function getReplacementText(text)
     return text
 end
 
-TooltipDataProcessor.AddTooltipPreCall(Enum.TooltipDataType.Item, function (self, data)
+local function rewriteTooltipLines(self, data)
     if not data or not data.lines then return end
 
     for _, line in ipairs(data.lines) do
@@ -87,4 +91,9 @@ TooltipDataProcessor.AddTooltipPreCall(Enum.TooltipDataType.Item, function (self
             line.leftText = getReplacementText(line.leftText)
         end
     end
-end)
+end
+
+-- Items, plus spells: a profession recipe ("Leatherworking: ...") is a Spell tooltip that
+-- lists the item it makes as ordinary lines after a NestedBlock line
+TooltipDataProcessor.AddTooltipPreCall(Enum.TooltipDataType.Item, rewriteTooltipLines)
+TooltipDataProcessor.AddTooltipPreCall(Enum.TooltipDataType.Spell, rewriteTooltipLines)

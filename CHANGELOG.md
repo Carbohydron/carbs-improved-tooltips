@@ -1,5 +1,12 @@
 # Carbs Improved Tooltips
 
+## Unreleased
+
+- Shows "Equip: Improves your chance to get a critical strike by X%." as
+  "+X% Critical Strike chance".
+- Also shortens the stats of the item a profession recipe makes, in the profession window,
+  spellbook and recipe links.
+
 ## v1.0.0
 
 First public release for World of Warcraft: Forever.
