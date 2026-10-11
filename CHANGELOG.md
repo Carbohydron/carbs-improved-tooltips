@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Shows "Equip: Improves your chance to get a critical strike by X%." as
+  "+X% Critical Strike chance".
 - Also shortens the stats of the item a profession recipe makes, in the profession window,
   spellbook and recipe links.
 

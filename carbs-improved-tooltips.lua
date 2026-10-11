@@ -53,6 +53,10 @@ local rules = {
         format = function(amount) return "+" .. amount .. "% Hit" end,
     },
     {
+        pattern = "^Equip: Improves your chance to get a critical strike by ([%d%.]+)%%%.?$",
+        format = function(amount) return "+" .. amount .. "% Critical Strike chance" end,
+    },
+    {
         pattern = "^Equip: Increased Defense %+(%d+)%.?$",
         format = function(amount) return "+" .. amount .. " Defense" end,
     },
