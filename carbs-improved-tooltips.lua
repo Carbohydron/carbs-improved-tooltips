@@ -60,11 +60,7 @@ local rules = {
         pattern = "^Equip: Increases your chance to [Dd]odge an attack by ([%d%.]+)%%%.?$",
         format = function(amount) return "+" .. amount .. "% Dodge" end,
     },
-    {
-        pattern = "^Equip: Increased Defense %+(%d+)%.?$",
-        format = function(amount) return "+" .. amount .. " Defense" end,
-    },
-    -- Weapon skill, e.g. "Two-Handed Axes" or "Daggers" (after Defense, which has the same shape)
+    -- Defense or weapon skill, e.g. "Defense", "Two-Handed Axes" or "Daggers"
     {
         pattern = "^Equip: Increased ([%a%- ]+) %+(%d+)%.?$",
         format = function(skill, amount) return "+" .. amount .. " " .. skill .. " skill" end,

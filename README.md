@@ -26,7 +26,7 @@ item stats appear, including the item a recipe makes.
 | Equip: Improves your chance to hit by 0.4%. | +0.4% Hit |
 | Equip: Improves your chance to get a critical strike by 1.0%. | +1.0% Critical Strike chance |
 | Equip: Increases your chance to dodge an attack by 1.0%. | +1.0% Dodge |
-| Equip: Increased Defense +7. | +7 Defense |
+| Equip: Increased Defense +7. | +7 Defense skill |
 | Equip: Increased Two-Handed Axes +2. | +2 Two-Handed Axes skill |
 | Equip: Restores 2 mana per 5 sec. | +2 Mana per 5 sec. |
 | Equip: Restores 5 health per 5 sec. | +5 Health per 5 sec. |

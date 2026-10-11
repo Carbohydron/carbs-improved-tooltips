@@ -7,6 +7,7 @@
 - Shows "Equip: Increases your chance to dodge an attack by X%." as "+X% Dodge".
 - Shows weapon skill lines such as "Equip: Increased Two-Handed Axes +X." as
   "+X Two-Handed Axes skill", for any weapon type.
+- Defense lines now show as "+X Defense skill", matching weapon skills.
 - Also shortens the stats of the item a profession recipe makes, in the profession window,
   spellbook and recipe links.
 
