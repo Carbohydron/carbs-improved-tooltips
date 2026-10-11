@@ -57,8 +57,13 @@ local rules = {
         format = function(amount) return "+" .. amount .. "% Critical Strike chance" end,
     },
     {
-        pattern = "^Equip: Increased Defense %+(%d+)%.?$",
-        format = function(amount) return "+" .. amount .. " Defense" end,
+        pattern = "^Equip: Increases your chance to [Dd]odge an attack by ([%d%.]+)%%%.?$",
+        format = function(amount) return "+" .. amount .. "% Dodge" end,
+    },
+    -- Defense or weapon skill, e.g. "Defense", "Two-Handed Axes" or "Daggers"
+    {
+        pattern = "^Equip: Increased ([%a%- ]+) %+(%d+)%.?$",
+        format = function(skill, amount) return "+" .. amount .. " " .. skill .. " skill" end,
     },
     {
         pattern = "^Equip: Restores (%d+) [Mm]ana per 5 sec%.?$",
