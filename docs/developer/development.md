@@ -11,17 +11,16 @@ mklink /J "E:\Program Files (x86)\World of Warcraft\_classic_beta_\Interface\Add
 
 ## How the tooltip rewrite works
 
-`carbs-improved-tooltips.lua` registers a `TooltipDataProcessor.AddTooltipPreCall` for every tooltip
-type (`TooltipDataProcessor.AllTypes`) and runs each left-hand line through `getReplacementText`
-before the tooltip is drawn. Lines with secret text are skipped. Text holding several lines
-(joined with `\n`, such as the item a recipe makes) is rewritten line by line. See
+`carbs-improved-tooltips.lua` registers a `TooltipDataProcessor.AddTooltipPreCall` for `Item` and
+`Spell` tooltips and runs each left-hand line through `getReplacementText` before the tooltip is
+drawn. `Spell` covers profession recipes, which list the item they make. See
 `tooltip-data-types.md` for the tooltip and line types.
 
 - Every rewrite is one entry in the `rules` table: an anchored `pattern` and a `format`
   function that receives the pattern's captures and returns the new text.
 - Rules are tried in order and the first match wins. Each line runs one `text:match` per rule,
   and its captures go straight into `format`, so nothing is matched twice.
-- `getLineReplacement` passes two captures to `format`, so a pattern may have at most two.
+- `getReplacementText` passes two captures to `format`, so a pattern may have at most two.
   Raise that if a future rule needs more.
 - Every pattern starts with `^Equip: `, so a line that isn't an Equip line fails each pattern
   within its first few characters. Anchoring also leaves lines that only look similar alone.

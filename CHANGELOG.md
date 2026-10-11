@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-- Also shortens the stats of the item a recipe makes, in recipe and profession tooltips.
+- Also shortens the stats of the item a profession recipe makes, in the profession window,
+  spellbook and recipe links.
 
 ## v1.0.0
 
