@@ -4,6 +4,9 @@
 
 - Shows "Equip: Improves your chance to get a critical strike by X%." as
   "+X% Critical Strike chance".
+- Shows "Equip: Increases your chance to dodge an attack by X%." as "+X% Dodge".
+- Shows weapon skill lines such as "Equip: Increased Two-Handed Axes +X." as
+  "+X Two-Handed Axes skill", for any weapon type.
 - Also shortens the stats of the item a profession recipe makes, in the profession window,
   spellbook and recipe links.
 
