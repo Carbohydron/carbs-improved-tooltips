@@ -1,6 +1,6 @@
 # Carbs Improved Tooltips
 
-## Unreleased
+## v1.0.3
 
 - Renames "Spell Power" to "Spell Damage" and "Heal Power" to "Spell Healing", matching
   the default item comparison tooltip.
