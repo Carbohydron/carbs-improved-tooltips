@@ -1,5 +1,10 @@
 # Carbs Improved Tooltips
 
+## Unreleased
+
+- Renames "Spell Power" to "Spell Damage" and "Heal Power" to "Spell Healing", matching
+  the default item comparison tooltip.
+
 ## v1.0.2
 
 - Shows "Equip: Improves your chance to get a critical strike by X%." as

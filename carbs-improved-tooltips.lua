@@ -1,5 +1,6 @@
 -- Rewrites wordy "Equip:" stat lines on item tooltips into short "+X Stat" lines.
--- "Spell Power" always means spell damage; healing is shown separately as "Heal Power".
+-- Damage and healing bonuses are shown separately, as "Spell Damage" and "Spell Healing",
+-- matching the wording of the default UI's item comparison.
 
 -- Each rule: an anchored pattern and a function that builds the new text from its captures.
 -- Rules are tried in order; the first match wins. Anchoring on "^Equip: " makes most tooltip
@@ -8,32 +9,32 @@ local rules = {
     -- Damage and healing
     {
         pattern = "^Equip: Increases damage and healing done by magical spells and effects by up to (%d+)%.$",
-        format = function(amount) return "+" .. amount .. " Spell Power\n+" .. amount .. " Heal Power" end,
+        format = function(amount) return "+" .. amount .. " Spell Damage\n+" .. amount .. " Spell Healing" end,
     },
     -- Damage only
     {
         pattern = "^Equip: Increases damage done by magical spells and effects by up to (%d+)%.$",
-        format = function(amount) return "+" .. amount .. " Spell Power" end,
+        format = function(amount) return "+" .. amount .. " Spell Damage" end,
     },
     -- Damage against a creature type
     {
         pattern = "^Equip: Increases damage done to (%a+) by magical spells and effects by up to (%d+)%.$",
-        format = function(specific, amount) return "+" .. amount .. " Spell Power against " .. specific end,
+        format = function(specific, amount) return "+" .. amount .. " Spell Damage against " .. specific end,
     },
     -- Damage for one school
     {
         pattern = "^Equip: Increases damage done by (%a+) spells and effects by up to (%d+)%.$",
-        format = function(specific, amount) return "+" .. amount .. " " .. specific .. " Spell Power" end,
+        format = function(specific, amount) return "+" .. amount .. " " .. specific .. " Spell Damage" end,
     },
     -- Healing with a smaller damage bonus
     {
         pattern = "^Equip: Increases healing done by up to (%d+) and damage done by up to (%d+) for all magical spells and effects%.$",
-        format = function(healing, damage) return "+" .. damage .. " Spell Power\n+" .. healing .. " Heal Power" end,
+        format = function(healing, damage) return "+" .. damage .. " Spell Damage\n+" .. healing .. " Spell Healing" end,
     },
     -- Healing only
     {
         pattern = "^Equip: Increases healing done by spells and effects by up to (%d+)%.$",
-        format = function(amount) return "+" .. amount .. " Heal Power" end,
+        format = function(amount) return "+" .. amount .. " Spell Healing" end,
     },
     {
         pattern = "^Equip: %+(%d+) Attack Power%.?$",
