@@ -1,6 +1,6 @@
 # Carbs Improved Tooltips
 
-## Unreleased
+## v1.0.2
 
 - Shows "Equip: Improves your chance to get a critical strike by X%." as
   "+X% Critical Strike chance".
