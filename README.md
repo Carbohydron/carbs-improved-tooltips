@@ -30,7 +30,8 @@ item stats appear, including the item a recipe makes.
 | Equip: Restores 2 mana per 5 sec. | +2 Mana per 5 sec. |
 | Equip: Restores 5 health per 5 sec. | +5 Health per 5 sec. |
 
-Every other tooltip line is left as it is.
+Every other tooltip line is left as it is, as is any text the game protects from addons
+(for example some Cooldown Manager tooltips).
 
 ## License
 

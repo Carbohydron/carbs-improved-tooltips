@@ -1,5 +1,11 @@
 # Carbs Improved Tooltips
 
+## Unreleased
+
+- Fixes a Lua error ("attempt to index local 'text' (a secret string value ...)") when the
+  Cooldown Manager or other Blizzard UI shows a spell tooltip with protected text. Those
+  lines are now left as they are.
+
 ## v1.0.3
 
 - Renames "Spell Power" to "Spell Damage" and "Heal Power" to "Spell Healing", matching

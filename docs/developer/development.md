@@ -25,5 +25,8 @@ drawn. `Spell` covers profession recipes, which list the item they make.
   within its first few characters. Anchoring also leaves lines that only look similar alone.
 - A line that becomes two stats (damage and healing) returns both joined with `\n`.
 - To add a rewrite, add a rule and a row to the README table.
+- Lines whose text is a secret value (`issecretvalue`) are skipped. Blizzard UI such as the
+  Cooldown Manager calls `SetSpellByID` with secret text, and indexing it from addon code
+  raises "attempt to index local 'text' (a secret string value ...)".
 
 The client is interface 16001: a Retail-style API with classic-era item text.
