@@ -89,12 +89,18 @@ local function getReplacementText(text)
     return text
 end
 
+-- Some Blizzard UI (e.g. the Cooldown Manager) builds tooltips whose text is a "secret" value.
+-- Addon code can't read secret strings, so those lines are left alone. Older clients have no
+-- issecretvalue, so fall back to treating nothing as secret.
+local issecretvalue = issecretvalue or function() return false end
+
 local function rewriteTooltipLines(self, data)
     if not data or not data.lines then return end
 
     for _, line in ipairs(data.lines) do
-        if line.leftText and type(line.leftText) == "string" then
-            line.leftText = getReplacementText(line.leftText)
+        local text = line.leftText
+        if type(text) == "string" and not issecretvalue(text) then
+            line.leftText = getReplacementText(text)
         end
     end
 end
