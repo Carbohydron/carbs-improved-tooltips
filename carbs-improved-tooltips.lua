@@ -76,6 +76,7 @@ local rules = {
     },
 }
 
+-- Returns the new text, or nil when no rule matches
 local function getReplacementText(text)
     for _, rule in ipairs(rules) do
         -- Patterns have at most two captures; one-capture rules just ignore the second
@@ -85,8 +86,6 @@ local function getReplacementText(text)
             return rule.format(capture1, capture2)
         end
     end
-
-    return text
 end
 
 -- Some Blizzard UI (e.g. the Cooldown Manager) builds tooltips whose text is a "secret" value.
@@ -100,7 +99,13 @@ local function rewriteTooltipLines(self, data)
     for _, line in ipairs(data.lines) do
         local text = line.leftText
         if type(text) == "string" and not issecretvalue(text) then
-            line.leftText = getReplacementText(text)
+            -- Only write lines we change. Every field addon code writes is tainted, and Blizzard
+            -- code that later reads it is tainted too, which breaks its handling of secret values
+            -- elsewhere in the same tooltip (e.g. "attempt to index local 'color'").
+            local replacement = getReplacementText(text)
+            if replacement then
+                line.leftText = replacement
+            end
         end
     end
 end

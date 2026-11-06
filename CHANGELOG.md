@@ -1,5 +1,11 @@
 # Carbs Improved Tooltips
 
+## v1.0.5
+
+- Fixes a Lua error ("attempt to index local 'color' (a secret table value ...)") from
+  Blizzard's tooltip code on action bar tooltips. The addon now only touches the lines it
+  rewrites.
+
 ## v1.0.4
 
 - Fixes a Lua error ("attempt to index local 'text' (a secret string value ...)") when the

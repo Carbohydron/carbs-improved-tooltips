@@ -28,5 +28,8 @@ drawn. `Spell` covers profession recipes, which list the item they make.
 - Lines whose text is a secret value (`issecretvalue`) are skipped. Blizzard UI such as the
   Cooldown Manager calls `SetSpellByID` with secret text, and indexing it from addon code
   raises "attempt to index local 'text' (a secret string value ...)".
+- Only lines a rule matches are written back. Any field addon code assigns is tainted, and when
+  Blizzard's tooltip code reads it, its execution is tainted too and then fails on the secret
+  values in the same tooltip (e.g. "attempt to index local 'color' (a secret table value ...)").
 
 The client is interface 16001: a Retail-style API with classic-era item text.
